@@ -88,14 +88,14 @@ const OnboardSchool: React.FC = () => {
           </div>
           
           <div style={{ marginTop: '60px', maxWidth: '460px' }}>
-            <span style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#99f6e4', padding: '6px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>System Initialization</span>
-            <h1 style={{ fontSize: '42px', fontWeight: '800', lineHeight: '52px', margin: '16px 0 20px 0', letterSpacing: '-1px' }}>Deploy your environment wizard.</h1>
-            <p style={{ color: '#ccfbf1', fontSize: '17px', lineHeight: '26px', opacity: 0.9 }}>Establish your school entry node, invite departmental pillars, and orchestrate staff roles dynamically through our setup flow mapping.</p>
+            <span style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#99f6e4', padding: '6px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>School Setup</span>
+            <h1 style={{ fontSize: '42px', fontWeight: '800', lineHeight: '52px', margin: '16px 0 20px 0', letterSpacing: '-1px' }}>Prepare your school's workspace.</h1>
+            <p style={{ color: '#ccfbf1', fontSize: '17px', lineHeight: '26px', opacity: 0.95 }}>Create school records, invite staff, and configure classes to get teaching and learning started.</p>
           </div>
         </div>
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '24px', fontSize: '13px', color: '#99f6e4' }}>
-          <strong>Data Governance</strong>
-          <div style={{ opacity: 0.8, marginTop: '4px', fontSize: '12px' }}>GDPR & DE Northern Ireland Compliant</div>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '20px', fontSize: '13px', color: '#d6fff3' }}>
+          <strong style={{ display: 'block', fontSize: '13px' }}>Built for Schools</strong>
+          <div style={{ opacity: 0.95, marginTop: '6px', fontSize: '12px' }}>Designed with educators in mind — simple, secure, and school-first.</div>
         </div>
       </div>
 

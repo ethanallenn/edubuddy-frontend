@@ -81,23 +81,23 @@ const Signup: React.FC = () => {
           
           <div style={{ marginTop: '60px', maxWidth: '460px' }}>
             <span style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#99f6e4', padding: '6px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              {isInvited ? 'Secure Invitation' : 'Account Infrastructure'}
+              {isInvited ? 'Invitation' : 'Staff Access'}
             </span>
             <h1 style={{ fontSize: '42px', fontWeight: '800', lineHeight: '52px', margin: '16px 0 20px 0', letterSpacing: '-1px' }}>
-              {isInvited && formData.first_name ? `Welcome to the team, ${formData.first_name}.` : 'Initialize your staff identity token.'}
+              {isInvited && formData.first_name ? `Welcome, ${formData.first_name}.` : 'Create your staff account.'}
             </h1>
-            <p style={{ color: '#ccfbf1', fontSize: '17px', lineHeight: '26px', opacity: 0.9 }}>Join your institution\'s centralized data mesh network to coordinate with curriculum targets, run department diagnostics, and map student performance indices.</p>
+            <p style={{ color: '#ccfbf1', fontSize: '17px', lineHeight: '26px', opacity: 0.95 }}>Join your school's Portal to manage classes, collaborate with colleagues, and support student learning.</p>
           </div>
         </div>
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '24px', fontSize: '13px', color: '#99f6e4' }}>
-          <strong>Data Governance</strong>
-          <div style={{ opacity: 0.8, marginTop: '4px', fontSize: '12px' }}>GDPR & DE Northern Ireland Compliant</div>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '20px', fontSize: '13px', color: '#d6fff3' }}>
+          <strong style={{ display: 'block', fontSize: '13px' }}>Built for Schools</strong>
+          <div style={{ opacity: 0.95, marginTop: '6px', fontSize: '12px' }}>Designed with educators in mind — simple, secure, and school-first.</div>
         </div>
       </div>
 
       {/* RIGHT COLUMN: DATA FORM CONTAINER */}
-      <div style={{ width: '100%', maxWidth: '640px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px 80px', boxSizing: 'border-box', backgroundColor: '#f8fafc' }}>
-        <div style={{ width: '100%', maxWidth: '440px', margin: '0 auto' }}>
+      <div style={{ width: '100%', maxWidth: '720px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px 80px', boxSizing: 'border-box', backgroundColor: '#f8fafc' }}>
+        <div style={{ width: '100%', maxWidth: '540px', margin: '0 auto' }}>
           
           <h2 style={{ margin: '0 0 8px 0', color: '#1a202c', fontSize: '32px', fontWeight: '800', letterSpacing: '-1px' }}>Register Staff Account</h2>
           <p style={{ margin: '0 0 28px 0', color: '#718096', fontSize: '15px', lineHeight: '22px' }}>Configure your baseline access credentials below to bind your personal profile node.</p>

@@ -5,13 +5,11 @@ const ResetPassword = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   
-  // States for the form
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
-  // 1. Get the token from the URL (e.g., ?token=abc123xyz)
   const token = searchParams.get('token');
 
   useEffect(() => {
@@ -24,7 +22,6 @@ const ResetPassword = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 2. Client-side validation: Passwords must match
     if (password !== confirmPassword) {
       setStatus('error');
       setMessage('Passwords do not match.');
@@ -43,29 +40,16 @@ const ResetPassword = () => {
     try {
       const response = await fetch('http://localhost:3000/api/v1/users/reset-password', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          token, // The token from the URL
-          newPassword: password 
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, newPassword: password }),
       });
 
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to reset password.');
-      }
+      if (!response.ok) throw new Error(data.message || 'Failed to reset password.');
 
       setStatus('success');
       setMessage('Your password has been reset successfully!');
-      
-      // 3. Automatically redirect to login after a short delay
-      setTimeout(() => {
-        navigate('/login');
-      }, 3000);
-
+      setTimeout(() => navigate('/login'), 3000);
     } catch (error: any) {
       setStatus('error');
       setMessage(error.message);
@@ -73,75 +57,58 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        
-        <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Set New Password</h2>
-          <p className="text-gray-600 text-sm">
-            Please enter your new secure password below.
-          </p>
-        </div>
-
-        {status === 'success' ? (
-          <div className="text-center">
-            <div className="bg-emerald-50 text-emerald-800 p-4 rounded-md border border-emerald-200 text-sm mb-4">
-              {message}
-            </div>
-            <p className="text-gray-500 text-xs">Redirecting you to the login page...</p>
+    <div style={{ display: 'flex', minHeight: '100vh', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', backgroundColor: '#fff' }}>
+      <div style={{ flex: '1', background: '#0d7c71', padding: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#fff', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '400px', height: '400px', borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '40px' }}>
+            <div style={{ width: '32px', height: '32px', backgroundColor: '#fff', color: '#0d7c71', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold', fontSize: '18px' }}>E</div>
+            <span style={{ fontSize: '22px', fontWeight: '800', letterSpacing: '-0.5px' }}>EduBuddy<span style={{ color: '#fff' }}>.</span></span>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-5">
-            
-            {(status === 'error' || message) && (
-              <div className="bg-red-50 text-red-800 p-3 rounded-md border border-red-200 text-sm">
-                {message}
-              </div>
-            )}
 
-            {/* If token is missing, we disable the inputs */}
-            <fieldset disabled={!token || status === 'loading'} className="space-y-5">
-              <div>
-                <label htmlFor="pass" className="block text-sm font-medium text-gray-700 mb-1">
-                  New Password
-                </label>
-                <input
-                  id="pass"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent"
-                  placeholder="Min. 8 characters"
-                />
-              </div>
+          <div style={{ marginTop: '60px', maxWidth: '460px' }}>
+            <span style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#99f6e4', padding: '6px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>Account Support</span>
+            <h1 style={{ fontSize: '42px', fontWeight: '800', lineHeight: '52px', margin: '16px 0 20px 0', letterSpacing: '-1px' }}>Set a secure new password.</h1>
+            <p style={{ color: '#ccfbf1', fontSize: '17px', lineHeight: '26px', opacity: 0.95 }}>Set a strong password to maintain access to your school's Portal and resources.</p>
+          </div>
+        </div>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '20px', fontSize: '13px', color: '#d6fff3' }}>
+          <strong style={{ display: 'block', fontSize: '13px' }}>Built for Schools</strong>
+          <div style={{ opacity: 0.95, marginTop: '6px', fontSize: '12px' }}>Designed with educators in mind — simple, secure, and school-first.</div>
+        </div>
+      </div>
 
-              <div>
-                <label htmlFor="confirmPass" className="block text-sm font-medium text-gray-700 mb-1">
-                  Confirm New Password
-                </label>
-                <input
-                  id="confirmPass"
-                  type="password"
-                  required
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent"
-                  placeholder="Re-type password"
-                />
-              </div>
+      <div style={{ width: '100%', maxWidth: '720px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px 80px', boxSizing: 'border-box', backgroundColor: '#f8fafc' }}>
+        <div style={{ width: '100%', maxWidth: '540px', margin: '0 auto' }}>
 
-              <button
-                type="submit"
-                className="w-full bg-teal-700 text-white font-bold py-2 px-4 rounded-md hover:bg-teal-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {status === 'loading' ? 'Updating...' : 'Update Password'}
-              </button>
-            </fieldset>
-            
-          </form>
-        )}
-        
+          <h2 style={{ margin: '0 0 8px 0', color: '#1a202c', fontSize: '32px', fontWeight: '800', letterSpacing: '-1px' }}>Set New Password</h2>
+          <p style={{ margin: '0 0 28px 0', color: '#718096', fontSize: '15px', lineHeight: '22px' }}>Please enter your new secure password below.</p>
+
+          {status === 'success' ? (
+            <div style={{ backgroundColor: '#ecfdf5', color: '#065f46', padding: '14px 16px', borderRadius: '8px', border: '1px solid #bbf7d0', fontSize: '14px', marginBottom: '12px' }}>{message}</div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              {(status === 'error' || message) && (
+                <div style={{ color: '#c53030', backgroundColor: '#fff5f5', padding: '14px 16px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px', borderLeft: '4px solid #0d7c71' }}>{message}</div>
+              )}
+
+              <fieldset disabled={!token || status === 'loading'}>
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '700', color: '#4a5568' }}>New Password</label>
+                  <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Min. 8 characters" style={{ width: '100%', padding: '12px 14px', borderRadius: '8px', border: '1px solid #cbd5e0', boxSizing: 'border-box', fontSize: '15px', outline: 'none' }} />
+                </div>
+
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '700', color: '#4a5568' }}>Confirm New Password</label>
+                  <input type="password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Re-type password" style={{ width: '100%', padding: '12px 14px', borderRadius: '8px', border: '1px solid #cbd5e0', boxSizing: 'border-box', fontSize: '15px', outline: 'none' }} />
+                </div>
+
+                <button type="submit" style={{ width: '100%', padding: '16px', background: '#0d7c71', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 4px 12px rgba(13, 124, 113, 0.12)', opacity: status === 'loading' ? 0.6 : 1 }}>{status === 'loading' ? 'Updating...' : 'Update Password'}</button>
+              </fieldset>
+            </form>
+          )}
+
+        </div>
       </div>
     </div>
   );

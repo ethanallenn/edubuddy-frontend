@@ -25,7 +25,8 @@ const App: React.FC = () => {
         <Route path="/:schoolId/forgot-password" element={<ForgotPassword />} />
         <Route path="/:schoolId/reset-password" element={<ResetPassword />} />
 
-        {/* Global login fallback */}
+        {/* Root and global login fallback */}
+        <Route path="/" element={<WorkspaceFinder />} />
         <Route path="/login" element={<WorkspaceFinder />} />
         
         {/* PUBLIC ROUTES */}
@@ -53,8 +54,8 @@ const App: React.FC = () => {
           } 
         />
 
-        {/* Fallback Catch-all Route redirecting to Login */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        {/* Fallback Catch-all Route redirecting to root workspace finder */}
+        <Route path="*" element={<Navigate to="/" replace />} />
 
       </Routes>
     </BrowserRouter>
