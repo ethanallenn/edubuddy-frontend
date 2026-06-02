@@ -22,6 +22,7 @@ export const signup = async (userData: {
   if (response.data.status === 'success' && response.data.token) {
     localStorage.setItem('edubuddy_token', response.data.token);
     localStorage.setItem('edubuddy_user', JSON.stringify(response.data.data));
+    localStorage.setItem('edubuddy_school_id', userData.school_id);
   }
   return response.data;
 };

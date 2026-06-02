@@ -28,8 +28,10 @@ const Login = () => {
         throw new Error(data.message || 'Login failed.');
       }
 
-      localStorage.setItem('token', data.token);
-      navigate(`/${schoolId}/dashboard`);
+      localStorage.setItem('edubuddy_token', data.token);
+      localStorage.setItem('edubuddy_user', JSON.stringify({ ...data.data, school_id: schoolId }));
+      localStorage.setItem('edubuddy_school_id', String(schoolId || ''));
+      navigate('/dashboard', { replace: true });
     } catch (error: any) {
       setStatus('error');
       setErrorMessage(error.message);
