@@ -1,7 +1,5 @@
 import React from 'react';
-// FIXED: Changed './components/TeacherHeatMap' to '../components/TeacherHeatMap' 
-// assuming TeacherDashboard is in /pages and TeacherHeatMap is in /components
-import HeatMap from '../TeacherHeatMap';
+import HeatMap from './TeacherHeatMap';
 
 const TeacherDashboard: React.FC = () => {
   // In a real app, cohortId would be selected dynamically from context or an API

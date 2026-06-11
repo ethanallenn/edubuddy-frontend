@@ -1,7 +1,7 @@
 import React from 'react';
 // FIXED: Changed 'react-router' to 'react-router-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import DashboardLayout from './DashboardLayout.tsx';
+import DashboardLayout from './layouts/DashboardLayout';
 import TeacherDashboard from './pages/TeacherDashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import TeacherLogin from './pages/TeacherLogin';
